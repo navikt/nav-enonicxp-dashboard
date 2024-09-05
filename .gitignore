@@ -8,8 +8,7 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 # Dependency directories
-node_modules/
-
+node_modules
 
 # Optional npm cache directory
 .npm
@@ -22,10 +21,6 @@ node_modules/
 
 # dotenv environment variable files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -33,3 +28,17 @@ node_modules/
 
 # Build
 dist
+dist-ssr
+*.local
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
