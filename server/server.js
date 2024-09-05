@@ -4,7 +4,7 @@ import { path } from 'path';
 import { compression } from 'compression';
 
 const localEnvFile = '.env';
-const buildPath = path.resolve(__dirname, '../dist');
+const buildPath = path.resolve(__dirname, '../build');
 const basePath = '/navno/dashboard';
 const server = express();
 server.disable('x-powered-by');

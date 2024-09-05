@@ -27,8 +27,8 @@ node_modules
 .parcel-cache
 
 # Build
-dist
-dist-ssr
+build
+build-ssr
 *.local
 
 
