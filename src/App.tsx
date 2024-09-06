@@ -1,5 +1,11 @@
+import { useState } from 'react';
 import styles from './App.module.scss';
 
-export const App = () => {
-    return <div className={styles.app}>I am app</div>;
+const App = () => {
+    const [myState] = useState('initial state');
+    return <div className={styles.app}>I am app: {myState}</div>;
 };
+
+export { App };
+
+export default App;
