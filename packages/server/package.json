@@ -6,7 +6,7 @@
     "type": "module",
     "license": "MIT",
     "scripts": {
-        "dev": "nodemon --watch './**/*.ts' --exec 'bun run ./server-dev.ts'",
+        "dev": "nodemon --watch '.' --ext ts --exec 'bun run ./server-dev.ts'",
         "build": "tsc -b"
     },
     "dependencies": {

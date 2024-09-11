@@ -23,7 +23,7 @@ const startup = async () => {
     console.info('Starting node server and vite server. Please wait...');
 
     server.post(`/`, async (req, res) => {
-        res.send('yup!');
+        res.send('yup!!!');
     });
     // Client web:
     // Serve client web through vite dev server:
