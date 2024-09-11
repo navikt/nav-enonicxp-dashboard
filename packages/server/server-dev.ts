@@ -22,9 +22,6 @@ const startup = async () => {
 
     console.info('Starting node server and vite server. Please wait...');
 
-    server.post(`/`, async (req, res) => {
-        res.send('yup!!!');
-    });
     // Client web:
     // Serve client web through vite dev server:
     const viteDevServer = await createServer({
@@ -34,6 +31,25 @@ const startup = async () => {
         root: '../client',
         base: '/',
     });
+
+    server.post(`${basePath}`, async (req, res, next) => {
+        try {
+            const fetched = await fetch(`http://localhost:${port}/${basePath}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'text/html',
+                },
+            });
+
+            const data = await fetched.text();
+
+            res.send(data);
+        } catch (error) {
+            console.error('Error fetching from Vite server:', error);
+            res.status(500).send('Internal server error');
+        }
+    });
+
     server.use(viteDevServer.middlewares);
 
     const port = process.env.PORT || 3010;
