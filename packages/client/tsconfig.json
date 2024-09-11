@@ -18,8 +18,8 @@
         "strict": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
-            "@/*": ["./src/*"]
+            "@/*": ["./*"]
         }
     },
-    "include": ["src"]
+    "include": ["**/*.ts", "**/*.tsx"]
 }

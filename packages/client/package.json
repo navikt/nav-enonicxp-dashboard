@@ -1,0 +1,14 @@
+{
+    "name": "client",
+    "module": "index.tsx",
+    "type": "module",
+    "scripts": {
+        "build": "tsc -b && vite build"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    }
+}
