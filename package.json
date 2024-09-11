@@ -3,7 +3,7 @@
     "module": "index.ts",
     "type": "module",
     "scripts": {
-        "dev": "VITE_ENV=local bun run --watch server-dev.ts",
+        "dev": "bun run --cwd packages/server dev",
         "build": "bun run build:client && bun run build:server",
         "build:client": "bun run --cwd packages/client build",
         "build:server": "bun run --cwd packages/server build",

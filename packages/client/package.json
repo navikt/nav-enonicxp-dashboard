@@ -3,6 +3,7 @@
     "module": "index.tsx",
     "type": "module",
     "scripts": {
+        "dev": "vite",
         "build": "tsc -b && vite build"
     },
     "devDependencies": {
