@@ -14,8 +14,6 @@ const startup = async () => {
     const server = express();
     server.disable('x-powered-by');
 
-    console.log('hi');
-
     server.use(express.json());
     server.use(`${basePath}`, express.static(clientPath, { index: false }));
     server.get(`${basePath}/internal/isAlive|isReady`, (req, res) => res.sendStatus(200));
@@ -32,7 +30,7 @@ const startup = async () => {
         base: '/',
     });
 
-    server.post(`${basePath}`, async (req, res, next) => {
+    server.post(`${basePath}/*`, async (req, res) => {
         try {
             const fetched = await fetch(`http://localhost:${port}/${basePath}`, {
                 method: 'GET',

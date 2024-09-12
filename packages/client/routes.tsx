@@ -17,7 +17,7 @@ export const Routes: React.FC = () => {
 
     const routes = useRoutes([
         {
-            path: `${basePath}/site-info`,
+            path: `${basePath}/editor/site-info`,
             element: <FrontPage />,
         },
         {
