@@ -15,9 +15,11 @@ export const Routes: React.FC = () => {
         fetchXPContent(location.pathname);
     }, [location]);
 
+    console.log('location', location);
+
     const routes = useRoutes([
         {
-            path: `${basePath}/editor/site-info`,
+            path: `/admin/site/preview/default/draft/www.nav.no`,
             element: <FrontPage />,
         },
         {

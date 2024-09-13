@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import sass from 'sass';
 import path from 'path';
 
-const port = parseInt(process.env.VITE_PORT || '3000', 10);
+const port = parseInt(process.env.VITE_PORT || '3010', 10);
 
 export default defineConfig({
     build: {

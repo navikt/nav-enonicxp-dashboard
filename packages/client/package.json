@@ -3,7 +3,7 @@
     "module": "index.tsx",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "nodemon",
         "build": "tsc -b && vite build"
     },
     "devDependencies": {
@@ -11,5 +11,8 @@
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "nodemon": "^3.1.4"
     }
 }

@@ -3,12 +3,12 @@
     "module": "index.ts",
     "type": "module",
     "scripts": {
-        "dev": "bun run --cwd packages/server dev",
+        "dev-hmr": "bun run --cwd packages/server dev-hmr",
+        "start-local": "bun run --cwd packages/server watch && bun ./dist/server/server.js",
         "build": "bun run build:client && bun run build:server",
         "build:client": "bun run --cwd packages/client build",
         "build:server": "bun run --cwd packages/server build",
-        "lint": "eslint .",
-        "start": "cd server && bun run start"
+        "lint": "eslint ."
     },
     "devDependencies": {
         "@navikt/eslint-config-navno": "1.3.1",
