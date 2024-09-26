@@ -3,8 +3,8 @@
     "module": "index.tsx",
     "type": "module",
     "scripts": {
-        "dev": "nodemon",
-        "build": "tsc -b && vite build"
+        "build": "tsc -b && vite build",
+        "dev": "nodemon"
     },
     "devDependencies": {
         "@types/bun": "latest"

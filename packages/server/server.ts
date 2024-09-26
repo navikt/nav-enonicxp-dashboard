@@ -31,7 +31,8 @@ server.get(`${basePath}/internal/isAlive|isReady`, (req, res) => res.sendStatus(
 // Match everything except internal og static
 server.use(/^(?!.*\/(internal|static)\/).*$/, async (req, res) => {
     const indexPath = path.join(clientPath, 'index.html');
-    console.log(indexPath);
+    console.log('indexPath', indexPath);
+
     const result = await readFile(indexPath, 'utf8');
     res.setHeader(
         'Content-Security-Policy',
