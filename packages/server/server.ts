@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import compression from 'compression';
+import bodyParser from 'body-parser';
 import { readFile } from './utils';
 
 import cors from 'cors';
@@ -25,6 +26,7 @@ server.use(
 );
 server.use(compression());
 server.use(express.json());
+server.use(bodyParser.text({ type: 'text/*' }));
 server.use(`${basePath}`, express.static(clientPath, { index: false }));
 server.get(`${basePath}/internal/isAlive|isReady`, (req, res) => res.sendStatus(200));
 
@@ -32,6 +34,8 @@ server.get(`${basePath}/internal/isAlive|isReady`, (req, res) => res.sendStatus(
 server.use(/^(?!.*\/(internal|static)\/).*$/, async (req, res) => {
     const indexPath = path.join(clientPath, 'index.html');
     console.log('indexPath', indexPath);
+    console.log(req.body);
+    console.log('hello!!');
 
     const result = await readFile(indexPath, 'utf8');
     res.setHeader(

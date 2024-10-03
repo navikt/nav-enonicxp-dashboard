@@ -19,7 +19,7 @@ export const Routes: React.FC = () => {
 
     const routes = useRoutes([
         {
-            path: `/admin/site/preview/default/draft/www.nav.no`,
+            path: `/admin/site/inline/default/draft/www.nav.no`,
             element: <FrontPage />,
         },
         {
