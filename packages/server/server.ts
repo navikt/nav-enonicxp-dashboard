@@ -41,12 +41,16 @@ server.use(/^(?!.*\/(internal|assets)\/).*$/, async (req, res) => {
     const indexPath = path.join(clientPath, 'index.html');
     logger.info(`Serving ${indexPath}`);
 
+    const data = JSON.stringify(req.body);
+    logger.info(typeof data);
     const result = await readFile(indexPath, 'utf8');
+    const injectedHtml = result.replace('<!-- %XP_SCRIPT_PLACEHOLDER% -->', `<script>window.__INITIAL_DATA__ = ${data}</script>`);
+
     res.setHeader(
         'Content-Security-Policy',
         "default-src *.nav.no portal-admin-dev.oera.no localhost:8080 localhost:3010; script-src localhost:8080 localhost:3010 *.nav.no portal-admin-dev.oera.no *.tingtun.no termer.no uxsignals-frontend.uxsignals.app.iterate.no *.psplugin.com *.hotjar.com *.taskanalytics.com navtest.boost.ai 'unsafe-inline' 'unsafe-eval'; script-src-elem localhost:8080 localhost:3010 *.nav.no portal-admin-dev.oera.no *.tingtun.no termer.no uxsignals-frontend.uxsignals.app.iterate.no video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob: *.psplugin.com *.hotjar.com *.taskanalytics.com navtest.boost.ai 'unsafe-inline' 'unsafe-eval'; worker-src *.nav.no portal-admin-dev.oera.no blob:; style-src localhost:8080 localhost:3010 *.nav.no portal-admin-dev.oera.no 'unsafe-inline' 'unsafe-eval' *.psplugin.com *.googleapis.com *.gstatic.com; font-src *.nav.no portal-admin-dev.oera.no data: video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob: *.psplugin.com *.hotjar.com cdn.nav.no *.googleapis.com *.gstatic.com; img-src *.nav.no portal-admin-dev.oera.no data: video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob: uxsignals-frontend.uxsignals.app.iterate.no *.psplugin.com *.vimeocdn.com *.hotjar.com www.vergic.com; object-src video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob:; connect-src *.nav.no portal-admin-dev.oera.no video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob: api.uxsignals.com *.boost.ai *.psplugin.com *.hotjar.com *.hotjar.io *.taskanalytics.com; media-src video.qbrick.com play2.qbrick.com analytics.qbrick.com *.ip-only.net blob: ihb.nav.no; child-src *.nav.no blob:; style-src-elem localhost:8080 localhost:3010 *.nav.no *.psplugin.com 'unsafe-inline' *.googleapis.com *.gstatic.com; frame-src *.hotjar.com player.vimeo.com video.qbrick.com *.nav.no; frame-ancestors 'self' *.psplugin.com",
     );
-    res.send(result);
+    res.send(injectedHtml);
 });
 
 const port = process.env.PORT || 3010;
