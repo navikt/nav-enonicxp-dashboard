@@ -12,7 +12,7 @@ export default defineConfig({
     server: {
         port,
     },
-    base: process.env.VITE_PUBLIC_URL,
+    base: `${process.env.VITE_PUBLIC_URL}/person/dashboard/`,
     plugins: [react()],
     css: {
         preprocessorOptions: {
