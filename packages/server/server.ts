@@ -3,6 +3,7 @@ import path from 'path';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import { readFile } from './utils';
+import pino from 'pino';
 
 import cors from 'cors';
 
@@ -13,6 +14,11 @@ if (process.env.VITE_ENV === 'local') {
 }
 const clientPath = path.resolve(__dirname, '../client');
 const basePath = '/person/dashboard';
+const logger = pino({
+    transport: {
+        target: 'pino-pretty',
+    },
+});
 const server = express();
 server.disable('x-powered-by');
 
@@ -31,11 +37,9 @@ server.use(`${basePath}`, express.static(clientPath, { index: false }));
 server.get(`${basePath}/internal/isAlive|isReady`, (req, res) => res.sendStatus(200));
 
 // Match everything except internal og static
-server.use(/^(?!.*\/(internal|static)\/).*$/, async (req, res) => {
+server.use(/^(?!.*\/(internal|assets)\/).*$/, async (req, res) => {
     const indexPath = path.join(clientPath, 'index.html');
-    console.log('indexPath', indexPath);
-    console.log(req.body);
-    console.log('hello!!');
+    logger.info(`Serving ${indexPath}`);
 
     const result = await readFile(indexPath, 'utf8');
     res.setHeader(
